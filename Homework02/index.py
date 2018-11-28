@@ -20,15 +20,16 @@ import math
 # Start our test #1 - assume global variable secret_number
 # is the the "secret number" - change name if necessary
 
+rrange = 100
 
 def input_guess(guess):
     
     global tries
 
-    if tries == 0:
+    if tries == 1:
         label1.set_text('game is over! Secret Number is: %d' % secret_number)
         print('game is over! Secret Number is: %d' % secret_number)
-        new_game()
+        new_game(rrange)
         
     else:
         tries = tries - 1
@@ -41,7 +42,7 @@ def input_guess(guess):
 
         if guess == secret_number:
             label1.set_text('%d is Correct.\nYou may play another game. The random number has generated' % guess)
-            new_game()
+            new_game(rrange)
 
         elif guess < secret_number:
             label1.set_text('%d is Lower'% guess)
@@ -57,7 +58,7 @@ def clear_input():
     label3.set_text('')
     
 
-def new_game(rrange=100):
+def new_game(rrange):
     
     label2.set_text('Current range is [0:%d)' % rrange)
     
@@ -73,13 +74,13 @@ def new_game(rrange=100):
 def change_range_100():
     
     label2.set_text('Current range is [0:100)')
-    new_game()
+    new_game(100)
 
 
 def change_range_1000():
     
     label2.set_text('Current range is [0:1000)')
-    new_game(rrange=1000)
+    new_game(1000)
 
 
 frame = simplegui.create_frame('Guessing', 200, 300, 500)
@@ -101,7 +102,6 @@ button3 = frame.add_button('Try Rangeis[0,100)', change_range_100)
 # "Rangeis[0,1000)"
 button4 = frame.add_button('Try Rangeis[0,1000)', change_range_1000)
 
-new_game()
 
 ###################################################
 # Output from test #1
@@ -223,3 +223,4 @@ new_game()
 #
 #New game. Range is [0,100)
 #Number of remaining guesses is 7
+
